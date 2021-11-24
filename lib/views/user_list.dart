@@ -20,7 +20,13 @@ class UserList extends StatelessWidget {
             icon: const Icon(Icons.add),
             onPressed: () {
               Navigator.of(context).pushNamed(
-                AppRoutes.USER_FORM,
+                AppRoutes.userForm,
+                arguments: const User(
+                  id: '',
+                  name: '',
+                  email: '',
+                  avatarUrl: '',
+                ),
               );
             },
           ),

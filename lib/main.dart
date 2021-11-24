@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         routes: {
-          AppRoutes.HOME: (_) => const UserList(),
-          AppRoutes.USER_FORM: (_) => const UserForm(),
+          AppRoutes.home: (_) => const UserList(),
+          AppRoutes.userForm: (_) => const UserForm(),
         },
       ),
     );

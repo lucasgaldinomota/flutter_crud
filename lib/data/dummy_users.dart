@@ -1,6 +1,6 @@
 import 'package:flutter_crud/models/user.dart';
 
-const DUMMY_USERS = {
+const dummyUsers = {
   '1': User(
     id: '1',
     name: 'Maria',
