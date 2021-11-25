@@ -42,15 +42,15 @@ class UserTile extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (ctx) => AlertDialog(
-                    title: const Text('Excluir Usuário'),
-                    content: const Text('Tem certeza???'),
+                    title: const Text('Remove User'),
+                    content: const Text('Are you sure???'),
                     actions: [
                       TextButton(
-                        child: const Text('Não'),
+                        child: const Text('No'),
                         onPressed: () => Navigator.of(context).pop(false),
                       ),
                       TextButton(
-                        child: const Text('Sim'),
+                        child: const Text('Yes'),
                         onPressed: () => Navigator.of(context).pop(true),
                       ),
                     ],
