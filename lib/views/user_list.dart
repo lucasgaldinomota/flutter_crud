@@ -14,28 +14,32 @@ class UserList extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lista de Usuários'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              Navigator.of(context).pushNamed(
-                AppRoutes.userForm,
-                arguments: const User(
-                  id: '',
-                  name: '',
-                  email: '',
-                  avatarUrl: '',
-                ),
-              );
-            },
-          ),
-        ],
+        title: const Text('Users List'),
       ),
       body: ListView.builder(
         itemCount: users.count,
         itemBuilder: (ctx, i) => UserTile(users.byIndex(i)),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 35,
+        ),
+        onPressed: () {
+          Navigator.of(context).pushNamed(
+            AppRoutes.userForm,
+            arguments: const User(
+              id: '',
+              name: '',
+              email: '',
+              avatarUrl: '',
+            ),
+          );
+        },
+        backgroundColor: Colors.purple,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

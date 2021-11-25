@@ -34,30 +34,7 @@ class _UserFormState extends State<UserForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Formulário de Usuário'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.save),
-            onPressed: () {
-              final isValid = _form.currentState!.validate();
-
-              if (isValid) {
-                _form.currentState!.save();
-
-                Provider.of<Users>(context, listen: false).put(
-                  User(
-                    id: _formData['id'],
-                    name: _formData['name']!,
-                    email: _formData['email']!,
-                    avatarUrl: _formData['avatarUrl']!,
-                  ),
-                );
-
-                Navigator.of(context).pop();
-              }
-            },
-          ),
-        ],
+        title: const Text('User Form'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -67,14 +44,14 @@ class _UserFormState extends State<UserForm> {
             children: [
               TextFormField(
                 initialValue: _formData['name'],
-                decoration: const InputDecoration(labelText: 'Nome'),
+                decoration: const InputDecoration(labelText: 'Name'),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Nome inválido';
+                    return 'Invalid name.';
                   }
 
                   if (value.trim().length < 3) {
-                    return 'Nome muito pequeno. No mínimo 3 letras.';
+                    return 'Name too short. At least 3 characters.';
                   }
 
                   return null;
@@ -83,13 +60,44 @@ class _UserFormState extends State<UserForm> {
               ),
               TextFormField(
                 initialValue: _formData['email'],
-                decoration: const InputDecoration(labelText: 'E-mail'),
+                decoration: const InputDecoration(labelText: 'Email'),
                 onSaved: (value) => _formData['email'] = value!,
               ),
               TextFormField(
                 initialValue: _formData['avatarUrl'],
-                decoration: const InputDecoration(labelText: 'URL do Avatar'),
+                decoration: const InputDecoration(labelText: 'Avatar URL'),
                 onSaved: (value) => _formData['avatarUrl'] = value!,
+              ),
+              const SizedBox(height: 30),
+              SizedBox(
+                width: 110,
+                height: 45,
+                child: ElevatedButton(
+                  onPressed: () {
+                    final isValid = _form.currentState!.validate();
+
+                    if (isValid) {
+                      _form.currentState!.save();
+
+                      Provider.of<Users>(context, listen: false).put(
+                        User(
+                          id: _formData['id'],
+                          name: _formData['name']!,
+                          email: _formData['email']!,
+                          avatarUrl: _formData['avatarUrl']!,
+                        ),
+                      );
+
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(
+                      fontSize: 22,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
